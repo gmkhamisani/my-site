@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import Header from "@/components/Header";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "gmkhamisani",
-  description: "Personal writing and essays",
+  title: siteConfig.title,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
@@ -23,7 +24,7 @@ export default function RootLayout({
               {children}
             </main>
             <footer className="border-t border-[var(--border)] py-6 text-center text-sm text-[var(--secondary)]">
-              <p>© {new Date().getFullYear()} gmkhamisani. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
             </footer>
           </div>
         </ThemeProvider>

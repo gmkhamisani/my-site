@@ -79,12 +79,17 @@ export default function AdminPage() {
     <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-serif font-semibold">Create New Post</h1>
-        <button
-          onClick={() => setIsAuthenticated(false)}
-          className="text-sm text-[var(--secondary)] hover:text-[var(--accent)]"
-        >
-          Logout
-        </button>
+        <div className="flex gap-4 items-center">
+          <a href="/admin/settings" className="text-sm text-[var(--secondary)] hover:text-[var(--accent)]">
+            Settings
+          </a>
+          <button
+            onClick={() => setIsAuthenticated(false)}
+            className="text-sm text-[var(--secondary)] hover:text-[var(--accent)]"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       {status === 'success' ? (

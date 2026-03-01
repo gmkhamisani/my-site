@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { siteConfig } from '@/lib/config';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -25,7 +26,7 @@ export default function Header() {
     <header className="border-b border-[#E5E0D8] dark:border-[#333]">
       <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="text-xl font-serif font-semibold text-[#1A1A1A] dark:text-[#F5F5F5]">
-          gmkhamisani
+          {siteConfig.name}
         </Link>
         
         <nav className="flex items-center gap-6">

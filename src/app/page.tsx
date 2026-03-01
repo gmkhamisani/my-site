@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
+import { siteConfig } from '@/lib/config';
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 7);
@@ -9,11 +10,10 @@ export default function Home() {
     <div className="max-w-3xl mx-auto px-4 py-12">
       <section className="mb-16">
         <h1 className="text-3xl font-serif font-semibold text-[var(--foreground)] mb-4">
-          Hi, I&apos;m gmkhamisani.
+          Hi, I&apos;m {siteConfig.name}.
         </h1>
         <p className="text-lg text-[var(--secondary)] leading-relaxed">
-          I write about technology, ideas, and whatever else catches my attention.
-          Welcome to my corner of the internet.
+          {siteConfig.intro}
         </p>
       </section>
 
