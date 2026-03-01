@@ -5,7 +5,7 @@ export const siteConfig = {
   intro: "I write about technology, ideas, and whatever else catches my attention. Welcome to my corner of the internet.",
   
   social: {
-    email: '',
+    email: 'gmkhamisani786@gmail.com',
     twitter: '',
     github: 'gmkhamisani',
   },
