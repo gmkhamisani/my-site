@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const REPO_OWNER = 'gmkhamisani';
+const REPO_NAME = 'my-site';
+
 export async function POST(request: Request) {
+  console.log('GITHUB_TOKEN available:', !!GITHUB_TOKEN);
+  
   try {
     const { title, category, description, content } = await request.json();
 
@@ -24,11 +30,7 @@ category: "${category}"
 ${content}
 `;
 
-    const githubToken = process.env.GITHUB_TOKEN;
-    const repoOwner = 'gmkhamisani';
-    const repoName = 'my-site';
-
-    if (!githubToken) {
+    if (!GITHUB_TOKEN) {
       return NextResponse.json(
         { error: 'GitHub token not configured' },
         { status: 500 }
@@ -36,12 +38,12 @@ ${content}
     }
 
     const filePath = `content/posts/${filename}`;
-    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePath}`;
 
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
-        'Authorization': `Bearer ${githubToken}`,
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.github.v3+json',
       },
