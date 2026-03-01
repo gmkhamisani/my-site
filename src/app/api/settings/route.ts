@@ -39,6 +39,16 @@ export type SiteConfig = typeof siteConfig;
     const filePath = 'src/lib/config.ts';
     const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
+    const getRes = await fetch(url, {
+      headers: { Authorization: `Bearer ${githubToken}` },
+    });
+
+    if (!getRes.ok) {
+      return NextResponse.json({ error: 'Could not read config file' }, { status: 500 });
+    }
+
+    const file = await getRes.json();
+
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -49,6 +59,7 @@ export type SiteConfig = typeof siteConfig;
       body: JSON.stringify({
         message: 'Update site settings',
         content: Buffer.from(configContent).toString('base64'),
+        sha: file.sha,
       }),
     });
 
